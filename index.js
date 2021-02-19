@@ -9,6 +9,7 @@ async function start() {
     // injetando uma nova propriedade no objeto
     content.searchTerm = askAndReturnSearchTerm();
     content.prefix = askAndReturnPrefix();
+    content.lang = askAndReturnLanguage();
 
     await robots.text(content);
 
@@ -22,6 +23,14 @@ async function start() {
         const selectedPrefixText = prefixes[selectedPrefixIndex];
 
         return selectedPrefixText;
+    }
+
+    function askAndReturnLanguage() {
+        const languages = ['pt', 'en'];
+        const selectedLanguageIndex = readline.keyInSelect(languages, 'Choose one language: ');
+        const selectedLanguageText = languages[selectedLanguageIndex];
+        
+        return selectedLanguageText;
     }
 
     console.log(content);
