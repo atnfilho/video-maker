@@ -1,25 +1,30 @@
 const readline = require('readline-sync')
+const robots = {
+    text: require('./robots/text.js')
+}
 
-function start() {
-    const content = {}
+async function start() {
+    const content = {};
 
     // injetando uma nova propriedade no objeto
-    content.searchTerm = askAndReturnSearchTerm()
-    content.prefix = askAndReturnPrefix()
+    content.searchTerm = askAndReturnSearchTerm();
+    content.prefix = askAndReturnPrefix();
+
+    await robots.text(content);
 
     function askAndReturnSearchTerm() {
-        return readline.question('Type a Wikipedia search term:')
+        return readline.question('Type a Wikipedia search term:');
     }
 
     function askAndReturnPrefix() {
-        const prefixes = ['Who is', 'What is', 'The history of']
-        const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ')
-        const selectedPrefixText = prefixes[selectedPrefixIndex-1]
+        const prefixes = ['Who is', 'What is', 'The history of'];
+        const selectedPrefixIndex = readline.keyInSelect(prefixes, 'Choose one option: ');
+        const selectedPrefixText = prefixes[selectedPrefixIndex];
 
-        return selectedPrefixText
+        return selectedPrefixText;
     }
 
-    console.log(content)
+    console.log(content);
 }
 
-start()
+start();
