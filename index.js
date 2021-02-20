@@ -4,7 +4,9 @@ const robots = {
 }
 
 async function start() {
-    const content = {};
+    const content = {
+        maximumSentences: 7
+    };
 
     // injetando uma nova propriedade no objeto
     content.searchTerm = askAndReturnSearchTerm();
@@ -33,7 +35,7 @@ async function start() {
         return selectedLanguageText;
     }
 
-    console.log(content);
+    console.log(JSON.stringify(content, null, 4));
 }
 
 start();
