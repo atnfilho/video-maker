@@ -4,11 +4,14 @@ const robots = {
 }
 
 async function start() {
-    const content = {};
+    const content = {
+        maximumSentences: 7
+    };
 
     // injetando uma nova propriedade no objeto
     content.searchTerm = askAndReturnSearchTerm();
     content.prefix = askAndReturnPrefix();
+    content.lang = askAndReturnLanguage();
 
     await robots.text(content);
 
@@ -24,7 +27,15 @@ async function start() {
         return selectedPrefixText;
     }
 
-    console.log(content);
+    function askAndReturnLanguage() {
+        const languages = ['pt', 'en'];
+        const selectedLanguageIndex = readline.keyInSelect(languages, 'Choose one language: ');
+        const selectedLanguageText = languages[selectedLanguageIndex];
+        
+        return selectedLanguageText;
+    }
+
+    console.log(JSON.stringify(content, null, 4));
 }
 
 start();
